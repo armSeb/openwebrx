@@ -582,7 +582,7 @@ class DspManager(SdrSourceEventClient, ClientDemodulatorSecondaryDspEventClient)
         if isinstance(demod, BaseDemodulatorChain):
             return demod
         # TODO: move this to Modes
-        if demod == "nfm":
+        if demod in ["fm", "nfm"]:
             from csdr.chain.analog import NFm
             return NFm(self.props["output_rate"])
         elif demod == "wfm":
@@ -594,7 +594,7 @@ class DspManager(SdrSourceEventClient, ClientDemodulatorSecondaryDspEventClient)
         elif demod == "sam":
             from csdr.chain.analog import SAm
             return SAm()
-        elif demod in ["usb", "lsb", "cw"]:
+        elif demod in ["hifiusb", "usb", "hifilsb", "lsb", "cw"]:
             from csdr.chain.analog import Ssb
             return Ssb()
         elif demod == "dmr":
